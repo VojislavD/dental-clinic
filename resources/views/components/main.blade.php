@@ -55,7 +55,7 @@
     <!-- end:Topbar -->
 
     <!-- start:Menu -->
-    <div class="w-full border-b-2 border-primary py-4 sticky top-0 z-10">
+    <div class="w-full bg-white border-b-2 border-primary py-4 sticky top-0 z-10">
         <div
             x-data="{ showMenu: false }" 
             class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between px-4 2xl:px-0"
