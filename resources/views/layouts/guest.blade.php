@@ -17,6 +17,10 @@
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
+
+        <style>
+            [x-cloak] { display: none !important; }
+        </style>
     </head>
     <body>
         <div class="font-sans text-gray-900 antialiased">

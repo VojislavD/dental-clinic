@@ -1,7 +1,7 @@
 <x-guest-layout>
-    <!-- start:Menu -->
+    <!-- start:Topbar -->
     <div class="w-full py-3 border-b">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0 px-4 7xl:px-0">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0 pl-4 pr-14 2xl:pl-0 2xl:pr-0">
             <ul class="flex flex-col md:flex-row items-center justify-center space-y-1 md:space-y-0 md:space-x-6 text-sm text-gray-400">
                 <li class="flex items-center space-x-2">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -42,11 +42,89 @@
             </ul>
         </div>
 
-        <a href="#" class="absolute top-3 right-4 text-gray-500 hover:text-primary" title="Sign In">
+        <a href="{{ route('login') }}" class="absolute top-3 right-4 text-gray-500 hover:text-primary" title="Sign In">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
             </svg>
         </a>
     </div>
+    <!-- end:Topbar -->
+
+    <!-- start:Menu -->
+    <div class="w-full border-b-2 border-primary py-4 sticky top-0 z-10">
+        <div
+            x-data="{ showMenu: false }" 
+            class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between px-4 2xl:px-0"
+        >
+            <div class="w-full lg:w-auto flex items-center justify-between">
+                <a href="#" class="flex items-center space-x-2">
+                    <img src="{{ asset('/img/logo.png') }}" alt="Logo" class="w-9 h-9">
+                    <span class="text-lg text-primary font-bold">Dental Care</span>
+                </a>
+                <button 
+                    @click="showMenu = !showMenu"
+                    class="lg:hidden text-primary"
+                >
+                    <span 
+                        x-show="!showMenu" 
+                        title="Open Menu"
+                        x-cloak
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7" />
+                        </svg>
+                    </span>
+                    <span 
+                        x-show="showMenu" 
+                        title="Close Menu"
+                        x-cloak
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </span>
+                </button>
+            </div>
+            <ul 
+                class="flex flex-col lg:flex-row items-center justify-center space-y-2 lg:space-y-0 lg:space-x-2 text-lg font-bold py-2 lg:py-0"
+                :class="showMenu ? 'flex' : 'hidden lg:flex'"
+                x-cloak
+            >
+                <li>
+                    <a href="#" class="text-primary hover:text-gray-100 hover:bg-primary px-2 py-1 rounded transition duration-100" title="Home">
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="text-primary hover:text-gray-100 hover:bg-primary px-2 py-1 rounded transition duration-100" title="About">
+                        About
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="text-primary hover:text-gray-100 hover:bg-primary px-2 py-1 rounded transition duration-100" title="Services">
+                        Services
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="text-primary hover:text-gray-100 hover:bg-primary px-2 py-1 rounded transition duration-100" title="Gallery">
+                        Gallery
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="text-primary hover:text-gray-100 hover:bg-primary px-2 py-1 rounded transition duration-100" title="Team">
+                        Team
+                    </a>
+                </li>
+                <li class="pl-4">
+                    <a href="#" class="text-primary hover:text-gray-100 hover:bg-primary px-2 py-1.5 border border-primary text-sm uppercase rounded" title="Book an appointment">
+                        Book an appointment
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
     <!-- end:Menu -->
+
+    <div class="h-screen"></div>
+    <div class="h-screen"></div>
 </x-guest-layout>
