@@ -1416,10 +1416,6 @@ select {
   --tw-border-opacity: 1;
   border-color: rgb(220 38 38 / var(--tw-border-opacity));
 }
-.border-red-500 {
-  --tw-border-opacity: 1;
-  border-color: rgb(239 68 68 / var(--tw-border-opacity));
-}
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
@@ -1474,6 +1470,12 @@ select {
 }
 .bg-opacity-25 {
   --tw-bg-opacity: 0.25;
+}
+.bg-opacity-50 {
+  --tw-bg-opacity: 0.5;
+}
+.bg-opacity-10 {
+  --tw-bg-opacity: 0.1;
 }
 .bg-cover {
   background-size: cover;
@@ -2000,6 +2002,16 @@ select {
   --tw-bg-opacity: 1;
   background-color: rgb(249 250 251 / var(--tw-bg-opacity));
 }
+.focus\:bg-primary:focus {
+  --tw-bg-opacity: 1;
+  background-color: rgb(49 130 206 / var(--tw-bg-opacity));
+}
+.focus\:bg-opacity-10:focus {
+  --tw-bg-opacity: 0.1;
+}
+.focus\:bg-opacity-20:focus {
+  --tw-bg-opacity: 0.2;
+}
 .focus\:text-gray-700:focus {
   --tw-text-opacity: 1;
   color: rgb(55 65 81 / var(--tw-text-opacity));
@@ -2015,6 +2027,10 @@ select {
 .focus\:text-gray-500:focus {
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity));
+}
+.focus\:text-primary-dark:focus {
+  --tw-text-opacity: 1;
+  color: rgb(43 115 182 / var(--tw-text-opacity));
 }
 .focus\:outline-none:focus {
   outline: 2px solid transparent;
