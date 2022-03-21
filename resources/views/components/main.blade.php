@@ -159,7 +159,7 @@
                 </li>
                 <li class="pl-4">
                     <a 
-                        href="#" 
+                        href="{{ route('bookAppointment') }}" 
                         class="text-primary hover:text-gray-100 hover:bg-primary px-2 py-1.5 border border-primary text-sm uppercase rounded transition duration-100" 
                         title="{{ __('Book an Appointment') }}"
                     >
@@ -282,7 +282,7 @@
                     </a>
                 </li>
                 <li class="hover:underline">
-                    <a href="#">
+                    <a href="{{ route('bookAppointment') }}">
                         {{ __('Book an Appointment') }}
                     </a>
                 </li>

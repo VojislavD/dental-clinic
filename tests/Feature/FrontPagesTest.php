@@ -61,4 +61,13 @@ class FrontPagesTest extends TestCase
         $response->assertOk()
             ->assertSee(__('Contact Us'));
     }
+
+    /** @test */
+    public function test_book_appointment_page()
+    {
+        $response = $this->get(route('bookAppointment'));
+
+        $response->assertOk()
+            ->assertSee(__('Book an Appointment'));
+    }
 }

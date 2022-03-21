@@ -19,6 +19,7 @@ Route::view('/services', 'front.services')->name('services');
 Route::view('/gallery', 'front.gallery')->name('gallery');
 Route::view('/team', 'front.team')->name('team');
 Route::view('/contact', 'front.contact')->name('contact');
+Route::view('/appointment/book', 'front.bookAppointment')->name('bookAppointment');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::view('/dashboard', 'admin.dashboard')->name('dashboard');
