@@ -2,7 +2,7 @@
     <h1 class="text-3xl text-primary text-center font-bold py-16 capitalize">{{ __('Our Services') }}</h1>
 
     <div>
-        <div class="max-w-7xl mx-auto grid grid-cols-3 gap-8 pb-16">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 pb-16 px-4 lg:px-0">
             <div class="flex flex-col items-center justify-center space-y-2">
                 <img 
                     src="{{ asset('/img/services/services1.jpg') }}" 
