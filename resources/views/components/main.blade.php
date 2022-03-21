@@ -148,6 +148,15 @@
                         {{ __('Team') }}
                     </a>
                 </li>
+                <li>
+                    <a 
+                        href="{{ route('contact') }}" 
+                        class="text-primary hover:text-gray-100 hover:bg-primary px-2 py-1 rounded transition duration-100" 
+                        title="{{ __('Contact') }}"
+                    >
+                        {{ __('Contact') }}
+                    </a>
+                </li>
                 <li class="pl-4">
                     <a 
                         href="#" 
@@ -268,7 +277,7 @@
                     </a>
                 </li>
                 <li class="hover:underline">
-                    <a href="#">
+                    <a href="{{ route('contact') }}">
                         {{ __('Contact') }}
                     </a>
                 </li>
