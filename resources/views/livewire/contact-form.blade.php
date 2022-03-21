@@ -22,7 +22,7 @@
         </label>
         <textarea id="body" class="mt-2 border-gray-300 focus:border-gray-300 focus:outline-none focus:ring-0"></textarea>
     </div>
-    <button class="bg-primary text-gray-100 px-6 py-1 rounded">
+    <button class="bg-primary hover:bg-primary-dark text-gray-100 px-6 py-1 rounded" title="Send">
         {{ __('Send') }}
     </button>
 </form>
