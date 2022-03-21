@@ -20,6 +20,7 @@ Route::view('/gallery', 'front.gallery')->name('gallery');
 Route::view('/team', 'front.team')->name('team');
 Route::view('/contact', 'front.contact')->name('contact');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('admin.dashboard');
-})->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    Route::view('/dashboard', 'admin.dashboard')->name('dashboard');
+    Route::view('/appointments', 'admin.appointments')->name('appointments');
+});
