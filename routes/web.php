@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'welcome')->name('welcome');
 Route::view('/about', 'about')->name('about');
 Route::view('/services', 'services')->name('services');
+Route::view('/gallery', 'gallery')->name('gallery');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
