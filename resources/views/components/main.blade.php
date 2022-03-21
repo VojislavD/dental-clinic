@@ -62,7 +62,7 @@
         >
             <div class="w-full lg:w-auto flex items-center justify-between">
                 <a 
-                    href="#" 
+                    href="{{ route('welcome') }}" 
                     class="flex items-center space-x-2"
                 >
                     <img 
@@ -105,7 +105,7 @@
             >
                 <li>
                     <a 
-                        href="#" 
+                        href="{{ route('welcome') }}" 
                         class="text-primary hover:text-gray-100 hover:bg-primary px-2 py-1 rounded transition duration-100" 
                         title="{{ __('Home') }}"
                     >
@@ -114,7 +114,7 @@
                 </li>
                 <li>
                     <a 
-                        href="#" 
+                        href="{{ route('about') }}" 
                         class="text-primary hover:text-gray-100 hover:bg-primary px-2 py-1 rounded transition duration-100" 
                         title="{{ __('About') }}"
                     >
@@ -243,12 +243,12 @@
         <div class="max-w-7xl mx-auto">
             <ul class="flex flex-col md:flex-row items-center justify-center text-gray-100 py-4 space-y-2 md:space-y-0 md:space-x-8">
                 <li class="hover:underline">
-                    <a href="#">
+                    <a href="{{ route('welcome') }}">
                         {{ __('Home') }}
                     </a>
                 </li>
                 <li class="hover:underline">
-                    <a href="#">
+                    <a href="{{ route('about') }}">
                         {{ __('About') }}
                     </a>
                 </li>
