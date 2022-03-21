@@ -123,7 +123,7 @@
                 </li>
                 <li>
                     <a 
-                        href="#" 
+                        href="{{ route('services') }}" 
                         class="text-primary hover:text-gray-100 hover:bg-primary px-2 py-1 rounded transition duration-100" 
                         title="{{ __('Services') }}"
                     >
@@ -253,7 +253,7 @@
                     </a>
                 </li>
                 <li class="hover:underline">
-                    <a href="#">
+                    <a href="{{ route('services') }}">
                         {{ __('Services') }}
                     </a>
                 </li>
