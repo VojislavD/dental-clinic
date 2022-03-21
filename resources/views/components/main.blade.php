@@ -141,7 +141,7 @@
                 </li>
                 <li>
                     <a 
-                        href="#" 
+                        href="{{ route('team') }}" 
                         class="text-primary hover:text-gray-100 hover:bg-primary px-2 py-1 rounded transition duration-100" 
                         title="{{ __('Team') }}"
                     >
@@ -260,6 +260,11 @@
                 <li class="hover:underline">
                     <a href="{{ route('gallery') }}">
                         {{ __('Gallery') }}
+                    </a>
+                </li>
+                <li class="hover:underline">
+                    <a href="{{ route('team') }}">
+                        {{ __('Team') }}
                     </a>
                 </li>
                 <li class="hover:underline">
