@@ -36,6 +36,16 @@ class BookAppointment extends Component
             })->toArray();
     }
 
+    public function updatedStateDate()
+    {
+        $this->availableTimes = Appointment::query()
+            ->whereDay('scheduled_at', Carbon::parse($this->state['date']))
+            ->get('scheduled_at')
+            ->map(function ($item) {
+                return $item->scheduled_at->format('H:i A');
+            })->toArray();
+    }
+
     public function setTime($time)
     {
         $this->state['time'] = $time;

@@ -8,6 +8,8 @@ use Tests\TestCase;
 
 class FrontPagesTest extends TestCase
 {
+    use RefreshDatabase;
+    
     /** @test */
     public function test_welcome_page()
     {

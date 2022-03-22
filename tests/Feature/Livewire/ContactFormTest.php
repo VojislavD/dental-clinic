@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Mail;
 use Livewire\Livewire;
 use Tests\TestCase;
 
-class ContactFormLivewireComponentTest extends TestCase
+class ContactFormTest extends TestCase
 {
     /** @test */
     public function test_component_shows_correct_info()
@@ -43,7 +43,7 @@ class ContactFormLivewireComponentTest extends TestCase
             ])
             ->set('state.name', 'Valid Name')
             ->set('state.email', 'validemail@example.com')
-            ->set('state.body', file_get_contents(__DIR__.'/../helpers/longText.txt'))
+            ->set('state.body', file_get_contents(__DIR__.'/../../helpers/longText.txt'))
             ->call('submit')
             ->assertHasErrors([
                 'state.body' => 'max',
