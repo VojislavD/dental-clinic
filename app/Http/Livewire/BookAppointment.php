@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Contracts\Actions\CreatesAppointment;
 use Livewire\Component;
 
 class BookAppointment extends Component
@@ -29,9 +30,13 @@ class BookAppointment extends Component
         $this->state['time'] = $time;
     }
 
-    public function submit()
+    public function submit(CreatesAppointment $creator)
     {
-        dd('Submit');
+        $creator($this->state);
+
+        $this->reset('state');
+
+        session()->flash('appointmentCreated', __('Appointment successfully created. Please be there 15 minutes before the scheduled appointment.'));
     }
 
     public function render()
