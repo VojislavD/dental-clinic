@@ -16,4 +16,8 @@ class Appointment extends Model
         'phone',
         'scheduled_at',
     ];
+
+    protected $casts = [
+        'scheduled_at' => 'datetime'
+    ];
 }

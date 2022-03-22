@@ -24,8 +24,9 @@
                 <button
                     @click="showForm = true" 
                     wire:click="setTime('{{ $time }}')"
-                    class="py-2 border hover:bg-gray-200 @if(!empty($state['time']) && $state['time'] == $time) bg-primary hover:bg-primary-dark text-gray-100 @endif"
-                    title="{{ __('Choose') }}">
+                    class="@if(in_array($time, $availableTimes)) text-gray-400 @else text-gray-900 hover:bg-gray-200 @endif py-2 border @if(!empty($state['time']) && $state['time'] == $time) bg-primary hover:bg-primary-dark text-gray-100 @endif"
+                    @if(in_array($time, $availableTimes)) disabled @endif
+                >
                     {{ $time }}
                 </button>
             @endforeach

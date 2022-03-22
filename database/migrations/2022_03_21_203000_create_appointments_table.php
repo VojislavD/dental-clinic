@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('last_name');
             $table->string('email');
             $table->string('phone');
-            $table->datetime('scheduled_at');
+            $table->timestamp('scheduled_at');
             $table->timestamps();
         });
     }

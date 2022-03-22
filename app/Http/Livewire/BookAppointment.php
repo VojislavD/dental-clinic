@@ -3,6 +3,8 @@
 namespace App\Http\Livewire;
 
 use App\Contracts\Actions\CreatesAppointment;
+use App\Models\Appointment;
+use Carbon\Carbon;
 use Livewire\Component;
 
 class BookAppointment extends Component
@@ -18,11 +20,20 @@ class BookAppointment extends Component
         '4:00 PM',
     ];
 
+    public $availableTimes = [];
+
     public $state = [];
 
     public function mount()
     {
         $this->state['date'] = date('Y-m-d');
+
+        $this->availableTimes = Appointment::query()
+            ->whereDay('scheduled_at', Carbon::parse($this->state['date']))
+            ->get('scheduled_at')
+            ->map(function ($item) {
+                return $item->scheduled_at->format('H:i A');
+            })->toArray();
     }
 
     public function setTime($time)
