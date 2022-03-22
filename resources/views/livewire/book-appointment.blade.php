@@ -52,7 +52,7 @@
                 <p class="text-sm text-red-600 font-bold mt-1">{{ $message }}</p>
             @enderror
 
-            @error('time')
+            @error('date_and_time')
                 <p class="text-sm text-red-600 font-bold mt-1">{{ $message }}</p>
             @enderror
 
