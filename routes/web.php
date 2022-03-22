@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,6 +23,6 @@ Route::view('/contact', 'front.contact')->name('contact');
 Route::view('/appointment/book', 'front.bookAppointment')->name('bookAppointment');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-    Route::view('/dashboard', 'admin.dashboard')->name('dashboard');
+    Route::get('/dashboard', DashboardController::class)->name('dashboard');
     Route::view('/appointments', 'admin.appointments')->name('appointments');
 });
