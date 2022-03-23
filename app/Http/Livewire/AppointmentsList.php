@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Contracts\Actions\DeletesAppointment;
 use App\Contracts\Actions\UpdatesAppointment;
 use App\Models\Appointment;
 use Carbon\Carbon;
@@ -74,6 +75,15 @@ class AppointmentsList extends Component
         $this->showModal = false;
 
         session()->flash('appointmentUpdated', __('Appointment successfully updated.'));
+    }
+
+    public function delete(DeletesAppointment $deleter)
+    {
+        $deleter($this->appointmentToUpdate);
+
+        $this->showModal = false;
+
+        session()->flash('appointmentDeleted', __('Appointment successfully deleted.'));
     }
 
     public function render()

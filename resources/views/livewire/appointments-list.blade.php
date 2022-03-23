@@ -4,6 +4,11 @@
             {{ session('appointmentUpdated') }}
         </div>
     @endif
+    @if(session('appointmentDeleted'))
+        <div class="w-3/4 md:w-2/3 lg:w-1/2 mx-auto text-center bg-green-200 text-green-800 px-16 py-2 rounded mb-4">
+            {{ session('appointmentDeleted') }}
+        </div>
+    @endif
     <h2 class="space-x-2">
         <span class="text-lg text-primary font-bold">
             {{ __('Appointments For ') }}
@@ -171,9 +176,16 @@
                         <p class="text-sm text-red-600 font-bold mt-1">{{ $message }}</p>
                     @enderror
                 </div>
-                <div class="pt-6">
+                <div class="pt-6 flex items-center justify-between">
                     <button type="submit" form="updateAppointmentForm" class="bg-primary hover:bg-primary-dark rounded-sm px-6 py-1.5 text-gray-100 hover:shadow-xl transition duration-150">
                         {{ __('Save') }}
+                    </button>
+                    <button 
+                        wire:click="delete"
+                        class="text-sm text-red-600 hover:underline"
+                        title="{{ __('Delete Appointment') }}"
+                    >
+                        {{ __('Delete') }}
                     </button>
                 </div>
             </div>
