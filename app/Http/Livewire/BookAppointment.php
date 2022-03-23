@@ -5,11 +5,12 @@ namespace App\Http\Livewire;
 use App\Contracts\Actions\CreatesAppointment;
 use App\Models\Appointment;
 use Carbon\Carbon;
+use Illuminate\Contracts\Support\Renderable;
 use Livewire\Component;
 
 class BookAppointment extends Component
 {
-    public $times = [
+    public array $times = [
         '09:00 AM',
         '10:00 AM',
         '11:00 AM',
@@ -20,11 +21,11 @@ class BookAppointment extends Component
         '04:00 PM',
     ];
 
-    public $availableTimes = [];
+    public array $availableTimes = [];
 
-    public $state = [];
+    public array $state = [];
 
-    public function mount()
+    public function mount(): void
     {
         $this->state['date'] = date('Y-m-d');
 
@@ -36,7 +37,7 @@ class BookAppointment extends Component
             })->toArray();
     }
 
-    public function updatedStateDate()
+    public function updatedStateDate(): void
     {
         $this->availableTimes = Appointment::query()
             ->whereDay('scheduled_at', Carbon::parse($this->state['date']))
@@ -46,12 +47,12 @@ class BookAppointment extends Component
             })->toArray();
     }
 
-    public function setTime($time)
+    public function setTime(string $time): void
     {
         $this->state['time'] = $time;
     }
 
-    public function submit(CreatesAppointment $creator)
+    public function submit(CreatesAppointment $creator): void
     {
         $creator($this->state);
 
@@ -60,7 +61,7 @@ class BookAppointment extends Component
         session()->flash('appointmentCreated', __('Appointment successfully created. Please be there 15 minutes before the scheduled appointment.'));
     }
 
-    public function render()
+    public function render(): Renderable
     {
         return view('livewire.book-appointment');
     }

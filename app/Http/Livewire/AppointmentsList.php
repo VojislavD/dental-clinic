@@ -6,13 +6,14 @@ use App\Contracts\Actions\DeletesAppointment;
 use App\Contracts\Actions\UpdatesAppointment;
 use App\Models\Appointment;
 use Carbon\Carbon;
+use Illuminate\Contracts\Support\Renderable;
 use Livewire\Component;
 
 class AppointmentsList extends Component
 {
-    public $showModal = false;
+    public bool $showModal = false;
 
-    public $times = [
+    public array $times = [
         '09:00 AM',
         '10:00 AM',
         '11:00 AM',
@@ -23,20 +24,20 @@ class AppointmentsList extends Component
         '04:00 PM',
     ];
 
-    public $availableTimes = [];
+    public array $availableTimes = [];
     
-    public $day;
+    public string $day;
 
     public Appointment $appointmentToUpdate;
 
-    public $state = [];
+    public array $state = [];
 
-    public function mount()
+    public function mount(): void
     {
         $this->day = date('Y-m-d');
     }
     
-    public function editAppointment(Appointment $appointment)
+    public function editAppointment(Appointment $appointment): void
     {
         $this->appointmentToUpdate = $appointment;
         $this->state['first_name'] = $appointment->first_name;
@@ -55,7 +56,7 @@ class AppointmentsList extends Component
             })->toArray();
     }
 
-    public function updatedStateDate()
+    public function updatedStateDate(): void
     {
         $this->availableTimes = Appointment::query()
             ->whereDay('scheduled_at', Carbon::parse($this->state['date']))
@@ -66,7 +67,7 @@ class AppointmentsList extends Component
             })->toArray();
     }
 
-    public function submit(UpdatesAppointment $updater)
+    public function submit(UpdatesAppointment $updater): void
     {
         $updater($this->appointmentToUpdate, $this->state);
 
@@ -77,7 +78,7 @@ class AppointmentsList extends Component
         session()->flash('appointmentUpdated', __('Appointment successfully updated.'));
     }
 
-    public function delete(DeletesAppointment $deleter)
+    public function delete(DeletesAppointment $deleter): void
     {
         $deleter($this->appointmentToUpdate);
 
@@ -86,7 +87,7 @@ class AppointmentsList extends Component
         session()->flash('appointmentDeleted', __('Appointment successfully deleted.'));
     }
 
-    public function render()
+    public function render(): Renderable
     {
         $appointments = Appointment::whereDay('scheduled_at', Carbon::parse($this->day))->get();
 

@@ -5,11 +5,12 @@ namespace App\Http\Livewire;
 use App\Contracts\Actions\CreatesAppointment;
 use App\Models\Appointment;
 use Carbon\Carbon;
+use Illuminate\Contracts\Support\Renderable;
 use Livewire\Component;
 
 class AppointmentsCreate extends Component
 {
-    public $times = [
+    public array $times = [
         '09:00 AM',
         '10:00 AM',
         '11:00 AM',
@@ -20,11 +21,11 @@ class AppointmentsCreate extends Component
         '04:00 PM',
     ];
 
-    public $notAvailableTimes = [];
+    public array $notAvailableTimes = [];
 
-    public $state = [];
+    public array $state = [];
 
-    public function mount()
+    public function mount(): void
     {
         $this->state['date'] = date('Y-m-d');
         $this->state['time'] = '09:00 AM';
@@ -37,7 +38,7 @@ class AppointmentsCreate extends Component
             })->toArray();
     }
     
-    public function updatedStateDate()
+    public function updatedStateDate(): void
     {
         $this->notAvailableTimes = Appointment::query()
             ->whereDay('scheduled_at', Carbon::parse($this->state['date']))
@@ -47,7 +48,7 @@ class AppointmentsCreate extends Component
             })->toArray();
     }
 
-    public function submit(CreatesAppointment $creator)
+    public function submit(CreatesAppointment $creator): void
     {
         $creator($this->state);
 
@@ -56,7 +57,7 @@ class AppointmentsCreate extends Component
         session()->flash('appointmentCreated', __('Appointment successfully created.'));
     }
 
-    public function render()
+    public function render(): Renderable
     {
         return view('livewire.appointments-create');
     }

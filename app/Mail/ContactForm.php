@@ -17,9 +17,9 @@ class ContactForm extends Mailable
      * @return void
      */
     public function __construct(
-        public $name,
-        public $email,
-        public $body
+        public string $name,
+        public string $email,
+        public string $body
     )
     {
         //
