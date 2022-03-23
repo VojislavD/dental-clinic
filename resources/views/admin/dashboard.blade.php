@@ -23,7 +23,7 @@
             </div>
 
             <div class="mt-16 bg-white shadow-xl py-4 rounded-lg border border-gray-300">
-                <h2 class="text-2xl text-primary text-center font-bold">
+                <h2 class="text-xl text-primary text-center font-bold">
                     <span>{{ __('Today') }}</span>
                     <span>|</span>
                     <span>{{ today()->format('Y-m-d') }}</span>
