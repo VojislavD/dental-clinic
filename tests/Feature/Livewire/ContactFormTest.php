@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Livewire;
 
 use App\Http\Livewire\ContactForm as LivewireContactForm;
 use App\Mail\ContactForm;
