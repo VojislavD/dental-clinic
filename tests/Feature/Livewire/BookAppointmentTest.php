@@ -21,11 +21,11 @@ class BookAppointmentTest extends TestCase
                 __('Choose Date:'),
                 __('Choose time for an appointment:')
             ])
-            ->set('state.date', '2022-03-22')
+            ->set('state.date', today()->format('Y-m-d'))
             ->set('state.time', '09:00 AM')
             ->assertSeeInOrder([
                 __('Appointment will be scheduled at:'),
-                '2022-03-22 09:00 AM'
+                today()->format('Y-m-d').' 09:00 AM'
             ]);
     }
 
@@ -85,7 +85,7 @@ class BookAppointmentTest extends TestCase
             ]);
 
         Livewire::test(BookAppointment::class)
-            ->set('state.date', '2022-03-22')
+            ->set('state.date', today()->format('Y-m-d'))
             ->set('state.time', '09:00 AM')
             ->set('state.first_name', 'John')
             ->set('state.last_name', 'Doe')
@@ -99,7 +99,7 @@ class BookAppointmentTest extends TestCase
     public function test_create_appointment()
     {
         Livewire::test(BookAppointment::class)
-            ->set('state.date', '2022-03-22')
+            ->set('state.date', today()->format('Y-m-d'))
             ->set('state.time', '09:00 AM')
             ->set('state.first_name', 'John')
             ->set('state.last_name', 'Doe')
@@ -113,7 +113,7 @@ class BookAppointmentTest extends TestCase
             'last_name' => 'Doe',
             'email' => 'johndoe@example.com',
             'phone' => '123456789',
-            'scheduled_at' => '2022-03-22 09:00:00'
+            'scheduled_at' => today()->format('Y-m-d').' 09:00:00'
         ]);
 
     }
