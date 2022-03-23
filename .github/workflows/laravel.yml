@@ -32,4 +32,5 @@ jobs:
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
+        CONTACT_FORM_TO: testuser@example.com
       run: vendor/bin/phpunit
