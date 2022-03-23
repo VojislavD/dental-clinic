@@ -21,7 +21,7 @@ class AppointmentFactory extends Factory
             'last_name' => $this->faker->lastName(),
             'email' => $this->faker->email(),
             'phone' => $this->faker->phoneNumber(),
-            'scheduled_at' => $this->faker->dateTime()
+            'scheduled_at' => $this->faker->dateTimeBetween(now()->subDays(7), now()->addDays(7))
         ];
     }
 }
