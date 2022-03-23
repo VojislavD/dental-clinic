@@ -1,4 +1,4 @@
-<div>
+<div x-data="{ editAppointment: false }">
     <h2 class="space-x-2">
         <span class="text-lg text-primary font-bold">
             {{ __('Appointments For ') }}
@@ -35,11 +35,15 @@
                             {{ $appointment->phone }}
                         </td>
                         <td class="text-center py-3">
-                            <a href="#" class="inline-block text-yellow-600 hover:text-yellow-700">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <button
+                                wire:click="editAppointment({{$appointment}})" 
+                                @click="editAppointment = true"
+                                class="text-yellow-600 hover:text-yellow-700"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                                 </svg>
-                            </a>
+                            </button>
                         </td>
                     </tr>
                 @empty
@@ -51,5 +55,115 @@
                 @endforelse
             </tbody>
         </table>
+    </div>
+
+    <div
+        x-show="editAppointment" 
+        x-cloak
+        class="w-full h-screen fixed left-0 top-0 bg-black bg-opacity-30 flex items-center justify-center"
+    >
+        <div 
+            @click.away="editAppointment = false"
+            class="w-1/3 bg-gray-100 rounded-lg shadow-xl"
+        >
+            <div class="relative border-b border-gray-300">
+                <h3 class="text-lg text-primary font-bold py-3 text-center">
+                    {{ __('Edit Appointment') }}
+                </h3>
+                <button 
+                    @click="editAppointment = false"
+                    class="absolute top-3 right-3 text-gray-700 hover:text-gray-900" 
+                    title="{{ __('Close') }}"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <form wire:click.prevent="submit" class="p-8 space-y-4">
+                <div class="flex flex-col">
+                    <label for="first_name">
+                        {{ __('First Name') }}
+                    </label>
+                    <input 
+                        wire:model.defer="state.first_name"
+                        type="text" 
+                        id="first_name" 
+                        class="mt-2 py-1 border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 @error('first_name') border-red-600 @enderror"
+                    >
+                    @error('first_name')
+                        <p class="text-sm text-red-600 font-bold mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div class="flex flex-col">
+                    <label for="last_name">
+                        {{ __('Last Name') }}
+                    </label>
+                    <input 
+                        wire:model.defer="state.last_name"
+                        type="text" 
+                        id="last_name" 
+                        class="mt-2 py-1 border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 @error('last_name') border-red-600 @enderror"
+                    >
+                    @error('last_name')
+                        <p class="text-sm text-red-600 font-bold mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div class="flex flex-col">
+                    <label for="email">
+                        {{ __('Email') }}
+                    </label>
+                    <input 
+                        wire:model.defer="state.email"
+                        type="email" 
+                        id="email" 
+                        class="mt-2 py-1 border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 @error('email') border-red-600 @enderror"
+                    >
+                    @error('email')
+                        <p class="text-sm text-red-600 font-bold mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div class="flex flex-col">
+                    <label for="phone">
+                        {{ __('Phone') }}
+                    </label>
+                    <input 
+                        wire:model.defer="state.phone"
+                        type="text" 
+                        id="phone" 
+                        class="mt-2 py-1 border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 @error('phone') border-red-600 @enderror"
+                    >
+                    @error('phone')
+                        <p class="text-sm text-red-600 font-bold mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div class="flex flex-col">
+                    <label for="default_select">{{ __('Date and time') }}</label>
+                    <div class="flex space-x-4">
+                        <input
+                            wire:model.defer="state.date"
+                            type="date" 
+                            class="mt-2 py-1 border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300"
+                        >
+                        <select 
+                            wire:model.defer="state.time"
+                            class="mt-2 py-1 border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300"
+                        >
+                            @forelse ($times as $time)
+                                <option>{{ $time }}</option>
+                            @empty
+                                <option></option>
+                            @endforelse
+                        </select>
+                    </div>
+                </div>
+                <div class="pt-6">
+                    <button class="bg-primary hover:bg-primary-dark rounded-sm px-6 py-1.5 text-gray-100 hover:shadow-xl transition duration-150">
+                        {{ __('Save') }}
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
