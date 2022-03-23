@@ -1,4 +1,9 @@
-<div x-data="{ editAppointment: false }">
+<div x-data="{ showModal: @entangle('showModal') }">
+    @if(session('appointmentUpdated'))
+        <div class="w-3/4 md:w-2/3 lg:w-1/2 mx-auto text-center bg-green-200 text-green-800 px-16 py-2 rounded mb-4">
+            {{ session('appointmentUpdated') }}
+        </div>
+    @endif
     <h2 class="space-x-2">
         <span class="text-lg text-primary font-bold">
             {{ __('Appointments For ') }}
@@ -37,7 +42,7 @@
                         <td class="text-center py-3">
                             <button
                                 wire:click="editAppointment({{$appointment}})" 
-                                @click="editAppointment = true"
+                                @click="showModal = true"
                                 class="text-yellow-600 hover:text-yellow-700"
                             >
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -58,12 +63,12 @@
     </div>
 
     <div
-        x-show="editAppointment" 
+        x-show="showModal" 
         x-cloak
         class="w-full h-screen fixed left-0 top-0 bg-black bg-opacity-30 flex items-center justify-center"
     >
         <div 
-            @click.away="editAppointment = false"
+            @click.away="showModal = false"
             class="w-1/3 bg-gray-100 rounded-lg shadow-xl"
         >
             <div class="relative border-b border-gray-300">
@@ -71,7 +76,7 @@
                     {{ __('Edit Appointment') }}
                 </h3>
                 <button 
-                    @click="editAppointment = false"
+                    @click="showModal = false"
                     class="absolute top-3 right-3 text-gray-700 hover:text-gray-900" 
                     title="{{ __('Close') }}"
                 >
@@ -81,68 +86,70 @@
                 </button>
             </div>
 
-            <form wire:click.prevent="submit" class="p-8 space-y-4">
-                <div class="flex flex-col">
-                    <label for="first_name">
-                        {{ __('First Name') }}
-                    </label>
-                    <input 
-                        wire:model.defer="state.first_name"
-                        type="text" 
-                        id="first_name" 
-                        class="mt-2 py-1 border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 @error('first_name') border-red-600 @enderror"
-                    >
-                    @error('first_name')
-                        <p class="text-sm text-red-600 font-bold mt-1">{{ $message }}</p>
-                    @enderror
-                </div>
-                <div class="flex flex-col">
-                    <label for="last_name">
-                        {{ __('Last Name') }}
-                    </label>
-                    <input 
-                        wire:model.defer="state.last_name"
-                        type="text" 
-                        id="last_name" 
-                        class="mt-2 py-1 border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 @error('last_name') border-red-600 @enderror"
-                    >
-                    @error('last_name')
-                        <p class="text-sm text-red-600 font-bold mt-1">{{ $message }}</p>
-                    @enderror
-                </div>
-                <div class="flex flex-col">
-                    <label for="email">
-                        {{ __('Email') }}
-                    </label>
-                    <input 
-                        wire:model.defer="state.email"
-                        type="email" 
-                        id="email" 
-                        class="mt-2 py-1 border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 @error('email') border-red-600 @enderror"
-                    >
-                    @error('email')
-                        <p class="text-sm text-red-600 font-bold mt-1">{{ $message }}</p>
-                    @enderror
-                </div>
-                <div class="flex flex-col">
-                    <label for="phone">
-                        {{ __('Phone') }}
-                    </label>
-                    <input 
-                        wire:model.defer="state.phone"
-                        type="text" 
-                        id="phone" 
-                        class="mt-2 py-1 border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 @error('phone') border-red-600 @enderror"
-                    >
-                    @error('phone')
-                        <p class="text-sm text-red-600 font-bold mt-1">{{ $message }}</p>
-                    @enderror
-                </div>
+            <div class="p-8 space-y-4">
+                <form wire:submit.prevent="submit" class="space-y-4" id="updateAppointmentForm">
+                    <div class="flex flex-col">
+                        <label for="first_name">
+                            {{ __('First Name') }}
+                        </label>
+                        <input 
+                            wire:model.defer="state.first_name"
+                            type="text" 
+                            id="first_name" 
+                            class="mt-2 py-1 border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 @error('first_name') border-red-600 @enderror"
+                        >
+                        @error('first_name')
+                            <p class="text-sm text-red-600 font-bold mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="flex flex-col">
+                        <label for="last_name">
+                            {{ __('Last Name') }}
+                        </label>
+                        <input 
+                            wire:model.defer="state.last_name"
+                            type="text" 
+                            id="last_name" 
+                            class="mt-2 py-1 border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 @error('last_name') border-red-600 @enderror"
+                        >
+                        @error('last_name')
+                            <p class="text-sm text-red-600 font-bold mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="flex flex-col">
+                        <label for="email">
+                            {{ __('Email') }}
+                        </label>
+                        <input 
+                            wire:model.defer="state.email"
+                            type="email" 
+                            id="email" 
+                            class="mt-2 py-1 border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 @error('email') border-red-600 @enderror"
+                        >
+                        @error('email')
+                            <p class="text-sm text-red-600 font-bold mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="flex flex-col">
+                        <label for="phone">
+                            {{ __('Phone') }}
+                        </label>
+                        <input 
+                            wire:model.defer="state.phone"
+                            type="text" 
+                            id="phone" 
+                            class="mt-2 py-1 border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 @error('phone') border-red-600 @enderror"
+                        >
+                        @error('phone')
+                            <p class="text-sm text-red-600 font-bold mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </form>
                 <div class="flex flex-col">
                     <label for="default_select">{{ __('Date and time') }}</label>
                     <div class="flex space-x-4">
                         <input
-                            wire:model.defer="state.date"
+                            wire:model="state.date"
                             type="date" 
                             class="mt-2 py-1 border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300"
                         >
@@ -151,19 +158,25 @@
                             class="mt-2 py-1 border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300"
                         >
                             @forelse ($times as $time)
-                                <option>{{ $time }}</option>
+                                <option @if(in_array($time, $availableTimes)) class="text-gray-400" disabled @endif>{{ $time }}</option>
                             @empty
                                 <option></option>
                             @endforelse
                         </select>
                     </div>
+                    @error('date')
+                        <p class="text-sm text-red-600 font-bold mt-1">{{ $message }}</p>
+                    @enderror
+                    @error('date_and_time')
+                        <p class="text-sm text-red-600 font-bold mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div class="pt-6">
-                    <button class="bg-primary hover:bg-primary-dark rounded-sm px-6 py-1.5 text-gray-100 hover:shadow-xl transition duration-150">
+                    <button type="submit" form="updateAppointmentForm" class="bg-primary hover:bg-primary-dark rounded-sm px-6 py-1.5 text-gray-100 hover:shadow-xl transition duration-150">
                         {{ __('Save') }}
                     </button>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>

@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Actions\Appointments\CreateAppointment;
+use App\Actions\Appointments\UpdateAppointment;
 use App\Contracts\Actions\CreatesAppointment;
+use App\Contracts\Actions\UpdatesAppointment;
 use Illuminate\Support\ServiceProvider;
 
 class ActionServiceProvider extends ServiceProvider
@@ -14,6 +16,7 @@ class ActionServiceProvider extends ServiceProvider
      * @var array
      */
     public $bindings = [
-        CreatesAppointment::class => CreateAppointment::class
+        CreatesAppointment::class => CreateAppointment::class,
+        UpdatesAppointment::class => UpdateAppointment::class
     ];
 }
