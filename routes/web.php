@@ -25,4 +25,5 @@ Route::view('/appointment/book', 'front.bookAppointment')->name('bookAppointment
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
     Route::view('/appointments', 'admin.appointments')->name('appointments');
+    Route::view('/appointments/create', 'admin.appointments-create')->name('appointments.create');
 });

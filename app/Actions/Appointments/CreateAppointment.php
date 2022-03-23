@@ -11,7 +11,9 @@ class CreateAppointment implements CreatesAppointment
 {
     public function __invoke(array $input): void
     {
-        $input['date_and_time'] = Carbon::parse($input['date'].' '.$input['time']);
+        $input['date_and_time'] = $input['date'] && $input['time'] 
+            ? Carbon::parse($input['date'].' '.$input['time']) 
+            : null;
 
         Validator::make($input, [
             'date' => ['required', 'after_or_equal:today'],
