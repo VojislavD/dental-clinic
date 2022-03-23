@@ -148,4 +148,19 @@ class AppointmentsListTest extends TestCase
             'scheduled_at' => today()->addHours(10)->format('Y-m-d H:i:00'),
         ]);
     }
+
+    /** @test */
+    public function test_delete_appointment()
+    {
+        $appointment = Appointment::factory()->create();
+
+        Livewire::test(AppointmentsList::class)
+            ->call('editAppointment', $appointment)
+            ->call('delete')
+            ->assertHasNoErrors();
+
+        $this->assertDatabaseMissing('appointments', [
+            'id' => $appointment->id,
+        ]);
+    }
 }
