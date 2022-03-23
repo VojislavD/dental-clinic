@@ -1,5 +1,5 @@
 # Dental Clinic Template
-<p>Template for dental clinic created with <a href="https://tallstack.dev/" target="_blank">TALL</a> stack, with appointment booking feature and admin panel to manage appointments.
+<p>Template for a dental clinic created with <a href="https://tallstack.dev/" target="_blank">TALL</a> stack, with appointment booking feature and admin panel to manage appointments.
 
 ## Installation
 Clone the repository, navigate to project directory and install dependencies
@@ -27,7 +27,7 @@ To seed the database with some test data run
 php artisan db:seed
 ```
 ## Usage
-When you seed your database there will be account created for testing
+When you seed your database, there will be account created for testing
   
 ```
 Email: testuser@example.com
