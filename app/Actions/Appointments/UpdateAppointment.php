@@ -11,7 +11,9 @@ class UpdateAppointment implements UpdatesAppointment
 {
     public function __invoke(Appointment $appointment, array $input): void
     {
-        $input['date_and_time'] = Carbon::parse($input['date'].' '.$input['time']);
+        $input['date_and_time'] = $input['date'] 
+            ? Carbon::parse($input['date'].' '.$input['time']) 
+            : null;
 
         Validator::make($input, [
             'date' => ['required'],
